@@ -14,6 +14,8 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(express.static(__dirname + '/public/'));
+
 
 //1. This must come before you use app.use passport.
 app.use(session({

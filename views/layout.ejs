@@ -3,20 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Authentication</title>
-
-    <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>Tour!</title>
+    <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <div class="container">
-      <h1>Authentication</h1>
-      <%- JSON.stringify(currentUser) %>
-      <% include partials/alerts %>
-      <%- body %>
-    </div>
-
+    <nav>
+      <div class="nav-wrapper black">
+        <a href="#" class="brand-logo center"><div class="logo">TourApp!</div></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="medium material-icons">menu</i></a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/">Home</a></li>
+          <!-- add a link to dashboard here. -->
+          <li><a href="/auth/logout">Logout</a></li>
+          <!-- <li><a href="collapsible.html">JavaScript</a></li> -->
+        </ul>
+      </div>
+    </nav>
+      <ul id="slide-out" class="sidenav">
+        <li><div class="user-view">
+          <div class="background">
+            <img src="https://www.fillmurray.com/g/200/300">
+          </div>
+          <a href="#user"><img class="circle" src="https://www.fillmurray.com/200/300"></a>
+          <a href="#name"><span class="white-text name">John Doe</span></a>
+          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+        <li><a class="waves-effect" href="/profile"><i class="material-icons">person</i>User Profile</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">create</i>Create New Tour</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">content_cut</i>Edit a Tour</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">visibility</i>See Tours</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="#!">About</a></li>
+        <li><a class="waves-effect" href="#!">Help</a></li>
+      </ul>
+      <div class="container">
+        <!-- <%- JSON.stringify(currentUser) %> -->
+        <% include partials/alerts %>
+        <%- body %>
+      </div>
     <script src="//code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>
