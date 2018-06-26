@@ -6,11 +6,12 @@ var session = require('express-session');
 var passport = require('./config/passportConfig');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var flash = require('connect-flash');
+var geocoder = require('geocoder');
+var db = require('./models');
 
 var app = express();
 
 app.set('view engine', 'ejs');
-
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
@@ -49,6 +50,9 @@ app.get('/profile', isLoggedIn, function(req, res) {
 });
 
 app.use('/auth', require('./controllers/auth'));
+// app.use('/location', require('./controllers/location'));
+// app.use('/tour', require('./controllers/tour'));
+// app.use('/user', require('./controllers/user'));
 
 var server = app.listen(process.env.PORT || 3000);
 
