@@ -9,7 +9,7 @@ WDI-project2
 Hi, I'm Matt Carver, a Web Developer.  This is my first full-stack webapp, and one that I'm pretty passionate about.  Here you'll find information on this site's development, my working KanBan board, and some wireframes.  Thank you for reading and please enjoy!  -MC
 
 **Getting Started**
-- TourApp is hosted through Heroku, and you can find it here:
+- TourApp is hosted through Heroku, and you can find it here: https://tourappmc.herokuapp.com/auth/login
 
 - If you are interested in further development of this game or to see its inner-workings, please see my github repository "projecttwo", at: https://github.com/carverme.
 
@@ -72,3 +72,8 @@ In future development of the TourApp, I would like to improve or add the followi
 - A hat tip to:
   - Leah, my wife, for brainstorming an excellent App idea with me.
   - Steve, Kyle, and the WDI-Sea-19 cohort!
+
+
+  add db model info...
+  add wireframes
+  add get routes rowdylogger

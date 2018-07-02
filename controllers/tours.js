@@ -3,11 +3,7 @@ var db = require('../models');
 var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
 
-// router.get('/show', isLoggedIn, function(req, res) {
-//   console.log('hitting GET /tour/show')
-//   res.render('show');
-// });
-
+//POST route to add a new tour.
 router.post('/', function(req, res) {
   db.tour.create({
     name: req.body.name,
@@ -19,6 +15,7 @@ router.post('/', function(req, res) {
   });
 });
 
+//GET route for individual tours.
 router.get('/:id', function(req, res) {
   console.log('HITTING GET /tours/:id...')
   db.tour.findById(req.params.id).then(function(tour) {
@@ -31,7 +28,7 @@ router.get('/:id', function(req, res) {
   });
 });
 
-
+//PUT route for individual tour names and descriptions.
 router.put('/:id', function(req, res) {
   console.log('HITTING PUT on the Tours...');
   console.log(req.body.upname)
@@ -47,9 +44,6 @@ router.put('/:id', function(req, res) {
       });
 });
 
-
-
-
 // //<--------------Delete Route-------------->
  // router.delete('tours/:id', function(req,res) {
  //    console.log("Hitting delete route...TOURS!!!")
@@ -61,6 +55,5 @@ router.put('/:id', function(req, res) {
  //   });
  // });
 //<--------------Delete Route End-------------->
-
 
 module.exports = router;

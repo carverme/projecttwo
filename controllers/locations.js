@@ -3,7 +3,6 @@ var db = require('../models');
 var router = express.Router();
 var isLoggedIn = require('../middleware/isLoggedIn');
 
-
 //POST - NEW location on a specific tour:id
 router.post('/:id', function(req, res) {
   console.log("HITTING POST /LOCATION/...");
@@ -24,18 +23,8 @@ router.post('/:id', function(req, res) {
   });
   })
 });
-// //
-// //Show route...
-// router.get('/:id', function(req, res) {
-//   // console.log('GET - /');
-//   console.log("HITTING GET /LOCATION/:ID...");
-//   db.location.findAll().then(function(data) {
-//     console.log(data);
-//     res.render('show', {location: data});
-//   })
-// });
 
-
+//DELETE route to delete specific locations.
 router.delete('/:tourid/:locid', function(req, res) {
   console.log('hitting DELETE route');
   db.location.destroy({
