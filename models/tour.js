@@ -1,14 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var tour = sequelize.define('tour', {
+    userId: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    owner: DataTypes.STRING,
     description: DataTypes.TEXT,
     imageUrl: DataTypes.STRING
   }, {});
   tour.associate = function(models) {
-    models.tour.belongsToMany(models.location, {through: "toursLocations"});
-    models.tour.belongsToMany(models.user, {through: "usersTours"});
+    models.tour.belongsTo(models.user);
+    models.tour.hasMany(models.location);
+        // associations can be defined here
   };
   return tour;
 };

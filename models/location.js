@@ -1,14 +1,16 @@
 'use strict';
 var geocoder = require('geocoder');
+
 module.exports = (sequelize, DataTypes) => {
   var location = sequelize.define('location', {
+    tourId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     streetAddress: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     lat: DataTypes.FLOAT,
-    long: DataTypes.FLOAT
+    lng: DataTypes.FLOAT
   }, {
     hooks: {
       beforeCreate: function(location, options) {
@@ -20,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           if (err) return err;
           console.log('--Geocoder geometry Data: ', data.results[0].geometry)
           location.lat = data.results[0].geometry.location.lat;
-          location.long = data.results[0].geometry.location.long;
+          location.lng = data.results[0].geometry.location.lng;
           location.save().then(function(){
             console.log('--Item Updated: ', place)
           })
@@ -30,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   location.associate = function(models) {
-    models.location.belongsToMany(models.tour, {through: "toursLocations"});
+    models.location.belongsTo(models.tour);
+    // associations can be defined here
   };
   return location;
 };

@@ -2,16 +2,28 @@
   font-family: 'Yesteryear', cursive;
 }
 
-.btn1 {
-
-
-}
-
-.btn2 {
-
-
-}
-
 #map {
   height: 500px;
 }
+
+/* .buttons-wrapper {
+  position: absolute;
+  height: calc(100vh);
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 997;
+  top: 0;
+  pointer-events: none;
+  width: 100%;
+}
+.buttons-wrapper a {
+  pointer-events: auto;
+}
+.mg-rg {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+} */

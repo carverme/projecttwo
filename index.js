@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+//app.set("layout extractScripts", true)
 app.use(express.static(__dirname + '/public/'));
 
 
@@ -41,17 +42,25 @@ app.use(function(req, res, next) {
 });
 
 //Routes
-app.get('/', function(req, res) {
-  res.render('index');
+app.get('/', isLoggedIn, function(req, res) {
+  db.tour.findAll().then(function(data){
+    console.log(data)
+    res.render('index', {tours: data})
+  })
+  ;
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+
+
+
+
 app.use('/auth', require('./controllers/auth'));
-// app.use('/location', require('./controllers/location'));
-// app.use('/tour', require('./controllers/tour'));
+app.use('/locations', require('./controllers/locations'));
+app.use('/tours', require('./controllers/tours'));
 // app.use('/user', require('./controllers/user'));
 
 var server = app.listen(process.env.PORT || 3000);

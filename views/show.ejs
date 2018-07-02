@@ -1,1 +1,129 @@
-<h1>This is the edit tours page.</h1>
+<div class="row">
+  <div class="col s8">
+    <h1>Tour: <%= tour.name %></h1>
+    <hr>
+  </div>
+  <div class="col s4">
+    <a class="waves-effect waves-light btn modal-trigger center-align" href="#modal2">New Stop?</a>
+    <a class="waves-effect waves-light btn modal-trigger center-align" href="#modal5">Edit Tour?</a>
+
+  </div>
+
+    <div class="col s12">
+    <h3>Description: <%= tour.description %></h3>
+    <hr>
+    <img class="responsive-img" src="<%= tour.imageUrl %>">
+  </div>
+</div>
+
+<div class="row">
+  <h3>Tour stops:</h3>
+  <div class="col s.5">
+  </div>
+      <div class="col s4">
+        <% locations.forEach(function(location) { %>
+        <div class="card-panel-small grey lighten-3 z-depth-1">
+          <div class="row">
+            <div class="col s8">
+              <span class="black-text left">
+                    <h5><%= location.name %></h5>
+                    <p><%= location.streetAddress %></p>
+              </span>
+            </div>
+            <div class="card-action col s4">
+              <a class="right delete" href="/locations/<%= tour.id %>/<%= location.id %>">Delete!</a>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <div class="col s1">
+
+      </div>
+  <div id="map" class="col s6"></div>
+</div>
+
+  <div id="modal2" class="modal">
+      <div class="modal-content">
+        <h3>Add a new stop on the tour?</h3>
+        <form action="/locations/<%= tour.id %>" method="post">
+            <label>Name:
+              <input type="text" name="name">
+            </label>
+            <label>Street Address:
+              <input type="text" name="streetAddress">
+            </label>
+            <label>City:
+              <input type="text" name="city">
+            </label>
+            <label>State:
+              <input type="text" name="state">
+            </label>
+            <label>Zip Code:
+              <input type="text" name="zipCode">
+            </label>
+            <input type="submit" value="Add a stop">
+        </form>
+      </div>
+    </div>
+
+
+    <div id="modal5" class="modal">
+      <div class="modal-content">
+        <h3>Edit Tour</h3>
+        <form id="modal3" action="<%= tour.id %>">
+          <label>Name:
+            <input type="text" name="upname">
+          </label>
+          <label>Description:
+            <input type="text" name="updescription">
+          </label>
+          <label>Upload a web-hosted Image:
+            <input type="text" name="upimageUrl">
+          </label>
+          <input type="submit" value="Update">
+        </form>
+      </div>
+    </div>
+
+
+    <script>
+    var initMap = function() {
+      var markers = <%- JSON.stringify(locations) %>;
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 14
+        });
+
+        // if brower support available, ask user for location data and set the map view
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var initialLocation = new google.maps.LatLng(
+                position.coords.latitude,
+                position.coords.longitude
+            );
+            map.setCenter(initialLocation);
+            });
+        }
+
+        // for each marker passed through, add it to the map with a popup
+            markers.forEach(function(marker) {
+                console.log("is it?", marker);
+                var position = new google.maps.LatLng(marker.lat, marker.lng);
+                var googleMarker = new google.maps.Marker({
+                  position: position,
+                  title: marker.name,
+                  map: map
+                });
+                // Bind a popup to the marker
+                googleMarker.addListener('click', function() {
+                  var infoWindow = new google.maps.InfoWindow({
+                      content: '<h3>' + marker.name + '</h3>'
+                  });
+                  infoWindow.open(map, googleMarker);
+                });
+            });
+     };
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.KEY %>&callback=initMap"></script>

@@ -1,48 +1,61 @@
-<h2>Home</h2>
-<!-- 
-<div class="slider fullscreen">
-   <ul class="slides">
-     <li>
-       <img src="http://venus.1degreeworld.biz//venus/images/websites/17/pages/Home-Page-Meta-Data.jpg"> <!-- random image -->
-       <div class="caption center-align">
-         <h3>This is our big Tagline!</h3>
-         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-       </div>
-     </li>
-     <li>
-       <img src="#"> <!-- random image -->
-       <div class="caption left-align">
-         <h3>Left Aligned Caption</h3>
-         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-       </div>
-     </li>
-     <li>
-       <img src="#"> <!-- random image -->
-       <div class="caption right-align">
-         <h3>Right Aligned Caption</h3>
-         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-       </div>
-     </li>
-     <li>
-       <img src="#"> <!-- random image -->
-       <div class="caption center-align">
-         <h3>This is our big Tagline!</h3>
-         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-       </div>
-     </li>
-   </ul>
- </div>
- <div class="center-align buttons-wrapper">
-  <div class="row left">
-    <a class="waves-effect waves-green btn-small hoverable mg-rg black" href="/auth/login">Login</a>
-  </div>
-  <div class="row right">
-    <a class="waves-effect waves-green btn-small hoverable mg-rg black" href="/auth/signup">Signup</a>
-  </div>
-</div> -->
+<h2>Dashboard</h2><a class="waves-effect waves-light btn modal-trigger" href="#modal1">New Tour?</a>
 
-<!--
-<a href="/auth/signup">Signup</a>
+<br>
+
+
+<div class="row">
+  <% tours.forEach(function(tour){ %>
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image">
+            <img src="<%= tour.imageUrl %>">
+            <span>
+            </span>
+
+
+          </div>
+          <div class="card-content">
+            <p><%= tour.name %></p>
+            <!-- <p><%= tour.description %></p> -->
+          </div>
+          <div class="card-action">
+            <a href="/tours/<%= tour.id %>">Click to See Tour!</a>
+            <a class="right delete" href="/tours/<%= tour.id %>">Delete!</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h3>New Tour?</h3>
+    <form action="/tours" method="post">
+      <label>Name:
+        <input type="text" name="name">
+      </label>
+      <label>Description:
+        <input type="text" name="description">
+      </label>
+      <label>Upload a web-hosted Image:
+        <input type="text" name="imageUrl">
+      </label>
+      <input type="submit" value="Add Tour">
+    </form>
+  </div>
+</div>
+
+<!-- <a href="/auth/signup">Signup</a>
 <a href="/auth/login">Login</a>
 <a href="/auth/logout">Logout</a>
 <a href="/profile">User Profile</a> -->

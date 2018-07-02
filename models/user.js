@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       user.associate = function(models) {
-        models.user.belongsToMany(models.tour, {through: "usersTours"});
+        models.user.hasMany(models.tour);
       };
       //this checks the entered password against the database hashed password.
       user.prototype.validPassword = function(passwordTyped) {
